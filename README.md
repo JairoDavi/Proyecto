@@ -36,12 +36,7 @@
 - seaborn
 
 
-###Links
 
-----
-
-`<GitHub>` : <https://github.com/JairoDavi/Proyecto>
->GitHub
 
 ----
 # Funcionamiento del Proyecto
@@ -49,7 +44,11 @@
 
 ----
 ## Dataset
-- El proyecto utiliza  archivos CSV (metadata.csv)() que contiene datos de imágenes médicas. Este archivo incluye información relevante como la edad del paciente, el conteo de leucocitos, neutrófilos y linfocitos, y la etiqueta de diagnóstico 
+- El proyecto utiliza  archivos CSV (metadata.csv)  que contiene datos de imágenes médicas. Este conjunto de datos ofrece una amplia gama de imágenes médicas relacionadas con la enfermedad COVID-19 provocada por el virus SARS-CoV-2. Con el uso de este conjunto de datos, los investigadores pueden crear más fácilmente algoritmos de aprendizaje automático e inteligencia artificial (IA) para la detección, el diagnóstico y el tratamiento de enfermedades respiratorias
+
+`<LINK>` : <https://www.kaggle.com/datasets/kaggleprollc/covid-19-image-data-collection-ieee>
+>LINK
+
 
 ----
 ## Entrenamiento del Modelo
@@ -59,38 +58,38 @@
 ## Evaluación del Modelo
 - Una vez entrenado el modelo, se evalúa utilizando el conjunto de datos de prueba. Se calculan métricas de rendimiento como el porcentaje de exactitud, el porcentaje de acierto y la matriz de confusión.
 
-
-
 ----
 #Desarrollo del Proyecto 
 
-###Cantidad de datos por clase
+##Cantidad de datos por clase
 
     """Cantidad de datos por clase"""
     print("Cantidad de datos por clase en 'finding':")
     print(df['finding'].value_counts())
     print("\n")
-# Distribucion de clases
+
+##Distribucion de clases
 
     """Distribución entre clases (proporciones)"""
     print("Distribución entre clases en 'finding' (proporciones):")
     print(df['finding'].value_counts(normalize=True))
     print("\n")
-# Correlacion
+
+## Correlacion
 
 
     """Correlación entre columnas numéricas"""
     print("Correlación entre columnas numéricas:")
     print(df.corr())
     print("\n")
-# Sesgo
+## Sesgo
 
     """Sesgo en datos numéricos"""
     print("Sesgo en columnas numéricas:")
     print(df.skew(numeric_only=True))
     print("\n")
 	
-# Distribucion
+## Distribucion
 
     """Distribución de los datos"""
     print("Distribución de las columnas numéricas:")
@@ -99,10 +98,10 @@
 
 
 
-#Leer el archivo metadata.csv
+##Leer el archivo metadata.csv
 metadata = pd.read_csv('data/imagenesmedicas/metadata.csv')
 
-# Preprocesar datos
+## Preprocesar datos
 
     """Preprocesar datos para el modelo"""
     # Convertir etiquetas a números
@@ -115,7 +114,7 @@ metadata = pd.read_csv('data/imagenesmedicas/metadata.csv')
     
     return train_test_split(X, y, test_size=0.3, random_state=42)
 
-# Calcular porcentaje de exactitud
+## Calcular porcentaje de exactitud
 
     """Calcular porcentaje de exactitud"""
     X_train, X_test, y_train, y_test = preprocesar_datos(metadata)
@@ -131,7 +130,7 @@ metadata = pd.read_csv('data/imagenesmedicas/metadata.csv')
 
 
 
-# Calcular porcentaje de acierto
+## Calcular porcentaje de acierto
 def porcentaje_acierto():
     """Calcular porcentaje de acierto"""
     X_train, X_test, y_train, y_test = preprocesar_datos(metadata)
@@ -145,7 +144,7 @@ def porcentaje_acierto():
     print("Porcentaje de acierto:")
     print(f"Porcentaje real: {accuracy_score(y_test, y_pred) * 100:.2f}%")
 
-# Mostrar matriz de confusión
+## Mostrar matriz de confusión
 def matriz_confusion():
     """Mostrar matriz de confusión"""
     X_train, X_test, y_train, y_test = preprocesar_datos(metadata)
@@ -165,7 +164,7 @@ def matriz_confusion():
     plt.show()
 ![matriz de confusion](https://github.com/user-attachments/assets/4c525ff7-03a1-4984-aed9-6edf9d46c002)
 
-# Mostrar reporte de clasificación
+## Mostrar reporte de clasificación
 def reporte_clasificacion():
     """Mostrar reporte de clasificación"""
     X_train, X_test, y_train, y_test = preprocesar_datos(metadata)
@@ -181,5 +180,6 @@ def reporte_clasificacion():
     print(report)
 
 ----
-## Conclusion del Proyecto
+# Conclusion del Proyecto
 - Este proyecto destaca cómo la inteligencia artificial puede mejorar los diagnósticos médicos, y sugiere que futuras mejoras podrían fortalecer aún más su efectividad.
+
