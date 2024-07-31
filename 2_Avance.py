@@ -64,7 +64,7 @@ def matriz_confusion():
     
     cm = confusion_matrix(y_test, y_pred)
     plt.figure(figsize=(10,7))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['No Pneumonia', 'Pneumonia'], yticklabels=['No Pneumonia', 'Pneumonia'])
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Clase 1', 'Clase 2', ..., 'Clase 21'], yticklabels=['Clase 1', 'Clase 2', ..., 'Clase 21'])  # Reemplaza con las etiquetas reales
     plt.xlabel('Predicted')
     plt.ylabel('True')
     plt.title('Matriz de Confusión')
@@ -81,12 +81,36 @@ def reporte_clasificacion():
     
     y_pred = model.predict(X_test)
     
-    report = classification_report(y_test, y_pred, target_names=['No Pneumonia', 'Pneumonia'])
+    # Asegúrate de que target_names tenga todas las clases
+    target_names = [f'Clase {i}' for i in range(21)]  # Reemplaza con nombres reales si los tienes
+    report = classification_report(y_test, y_pred, target_names=target_names)
     print("Reporte de Clasificación:")
     print(report)
 
-# Llamar a las funciones individualmente
-#porcentaje_exactitud()
-#porcentaje_acierto()
-matriz_confusion()
-#reporte_clasificacion()
+# Menú interactivo
+def mostrar_menu():
+    print("\nMenú de opciones:")
+    print("1. Calcular porcentaje de exactitud")
+    print("2. Calcular porcentaje de acierto")
+    print("3. Mostrar matriz de confusión")
+    print("4. Mostrar reporte de clasificación")
+    print("0. Salir")
+
+if __name__ == "__main__":
+    while True:
+        mostrar_menu()
+        opcion = input("Selecciona una opción: ")
+        
+        if opcion == "1":
+            porcentaje_exactitud()
+        elif opcion == "2":
+            porcentaje_acierto()
+        elif opcion == "3":
+            matriz_confusion()
+        elif opcion == "4":
+            reporte_clasificacion()
+        elif opcion == "0":
+            print("Saliendo del menú.")
+            break
+        else:
+            print("Opción no válida. Intenta de nuevo.")
